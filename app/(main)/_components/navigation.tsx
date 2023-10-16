@@ -28,9 +28,11 @@ import { useSearch } from '@/hooks/use-search';
 import { Item } from './item';
 import { DocumentList } from './document-list';
 import { Trashbox } from './trash-box';
+import { useSettings } from '@/hooks/use-settings';
 
 export const Navigation = () => {
   const search = useSearch()
+  const settings = useSettings()
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
   const create = useMutation(api.documents.create);
@@ -146,7 +148,7 @@ export const Navigation = () => {
         <div>
           <UserItem />
           <Item label='Search' icon={Search} isSearch onClick={search.onOpen} />
-          <Item label='Settings' icon={Settings} onClick={() => {}} />
+          <Item label='Settings' icon={Settings} onClick={settings.onOpen} />
           <Item onClick={handleCreate} label='New page' icon={PlusCircle} />
         </div>
         <div className='mt-4'>
